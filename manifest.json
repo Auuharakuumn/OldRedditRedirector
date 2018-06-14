@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Old Reddit Redirector",
-  "version": "0.0.2",
+  "version": "0.0.3",
 
   "description": "Redirects reddit.com pages to old.reddit.com. Source at https://github.com/Auuharakuumn/OldRedditRedirector",
 

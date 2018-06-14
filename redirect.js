@@ -17,8 +17,32 @@ function reddit_redirect(details) {
     return {redirectUrl: redirect_url};
 }
 
-browser.webRequest.onBeforeRequest.addListener(
-    reddit_redirect,
-    {urls:url_matches, types:["main_frame"]},
-    ["blocking"]
-);
+var firefox_webrq;
+var chrome_webrq;
+var redirector = undefined;
+
+try {
+    firefox_webrq = browser.webRequest.onBeforeRequest;
+} catch (e) {
+    firefox_webrq = undefined;
+}
+
+try {
+    chrome_webrq = chrome.webRequest.onBeforeRequest;
+} catch (e) {
+    chrome_webrq = undefined;
+}
+
+if (firefox_webrq !== undefined) {
+    redirector = firefox_webrq;
+} else if (chrome_webrq !== undefined) {
+    redirector = chrome_webrq;
+}
+
+if (redirector !== undefined) {
+    redirector.addListener(
+        reddit_redirect,
+        {urls: url_matches, types: ["main_frame"]},
+        ["blocking"]
+    );
+}
