@@ -1,14 +1,25 @@
 {
   "manifest_version": 2,
   "name": "Old Reddit Redirector",
-  "version": "0.0.1",
+  "version": "0.0.2",
 
-  "description": "Redirects reddit.com pages to old.reddit.com",
+  "description": "Redirects reddit.com pages to old.reddit.com. Source at https://github.com/Auuharakuumn/OldRedditRedirector",
 
-  "content_scripts": [
-    {
-      "matches": ["*://*.reddit.com/*"],
-      "js": ["redirect.js"]
+  "applications": {
+    "gecko": {
+      "id": "mfoley@mfoley.xyz"
     }
-  ]
+  },
+
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "*://*.reddit.com/*"
+  ],
+
+  "background": {
+    "scripts": [
+      "redirect.js"
+    ]
+  }
 }
